@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.priyatripathi.grpcapi;
+
+message User {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserRequest {
+  int64 id = 1;
+}
+
+message UserResponse {
+  User user = 1;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+service UserService {
+  rpc GetUser (UserRequest) returns (UserResponse);
+  rpc GetUsers (UserList) returns (UserList);
+  rpc CreateUser (User) returns (UserResponse);
+  rpc DeleteUser (UserRequest) returns (User){};
+}
